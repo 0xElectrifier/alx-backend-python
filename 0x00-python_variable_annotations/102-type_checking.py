@@ -12,8 +12,8 @@ def zoom_array(lst: Union[List, Tuple], factor: Union[float, int] = 2) -> List:
     return zoomed_in
 
 
-array = [12, 72, 91]
+array: List[int] = [12, 72, 91]
 
-zoom_2x = zoom_array(array)
+zoom_2x: List = zoom_array(array)
 
-zoom_3x = zoom_array(array, 3.0)
+zoom_3x: List = zoom_array(array, 3.0)
