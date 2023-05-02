@@ -3,7 +3,7 @@
 from typing import List, Tuple, Union
 
 
-def zoom_array(lst: List, factor: int = 2) -> List[int]:
+def zoom_array(lst: List, factor: float = 2) -> List[int]:
     """Creates multiple copies of items in a tuple, @lst."""
     zoomed_in: List[int] = [
         item for item in lst
