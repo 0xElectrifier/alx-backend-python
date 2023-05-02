@@ -5,4 +5,4 @@
 def floor(n: float) -> int:
     """Returns the float of @n"""
     import math
-    return math.floor(n);
+    return math.floor(n)
