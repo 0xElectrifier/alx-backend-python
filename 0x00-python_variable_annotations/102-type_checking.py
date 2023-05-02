@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 """Defines a type-annotated function for Task 12."""
-from typing import List, Tuple
+from typing import List, Tuple, Union
 
 
-def zoom_array(lst: Tuple, factor: int = 2) -> List:
+def zoom_array(lst: Union[List, Tuple], factor: Union[float, int] = 2) -> List:
     """Creates multiple copies of items in a tuple, @lst."""
-    zoomed_in: Tuple = [
+    zoomed_in: List = [
         item for item in lst
         for i in range(int(factor))
     ]
