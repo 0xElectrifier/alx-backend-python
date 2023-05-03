@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """Defines an async function for Task 1 module"""
+import asyncio
+from typing import List
 
 wait_random = __import__("0-basic_async_syntax").wait_random
-from typing import List
 
 
 async def wait_n(n: int, max_delay: int) -> List[float]:
@@ -12,8 +13,8 @@ async def wait_n(n: int, max_delay: int) -> List[float]:
         max_delay (int): The maximum limit of delay in seconds
     Returns: A list of all delays
     """
-    delays: List[float] = []
-    for i in range(n):
-        delays.append(await wait_random(max_delay))
+    tasks: List[float] = []
+    tasks = [asyncio.create_task(wait_random(max_delay)) for _ in range(n)]
+    delays = [await task for task in asyncio.as_completed(tasks)]
 
     return delays
