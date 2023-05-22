@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""Parameterize a unit test"""
+"""Module to test the @utils.py module"""
 from parameterized import parameterized
 from typing import (Dict, Tuple)
 from unittest import (mock, TestCase)
 
-from utils import (access_nested_map, get_json)
+from utils import (access_nested_map, get_json, memoize)
 
 
 class TestAccessNestedMap(TestCase):
@@ -53,3 +53,26 @@ class TestGetJson(TestCase):
         self.assertEqual(get_json(test_url), test_payload)
 
         mock_get.assert_called_once_with(test_url)
+
+
+class TestMemoize(TestCase):
+    """Tests the @utils.memoize function"""
+
+    def test_memoize(self):
+        """Tests the @utils.memoize function"""
+        class TestClass:
+            def a_method(self):
+                return 42
+
+            @memoize
+            def a_property(self):
+                return self.a_method()
+
+        @mock.patch("TestClass.a_method")
+        def t_memoize(self, mock_method):
+            expected = 42
+            mock_method.return_value = expected
+            self.assertEqual(TestClass.a_property(), expected)
+            self.assertEqual(TestClass.a_property(), expected)
+
+            mock_method.assert_called_once()
